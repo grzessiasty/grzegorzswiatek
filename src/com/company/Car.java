@@ -5,6 +5,7 @@ public class Car {
     public final String producer;
     public String color;
     public String type;
+    Double value;
 
     public Car (String model, String producer){
         this.model = model;
