@@ -26,5 +26,9 @@ public class Main {
         pato.car = opel;
         System.out.println("Moje auto to: " + opel.producer + " " + opel.model);
 
+        pato.setSalary(2500.0);
+        pato.getSalary();
+        pato.setSalary(3000.0);
+
     }
 }
