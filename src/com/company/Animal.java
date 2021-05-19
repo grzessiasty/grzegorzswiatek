@@ -13,6 +13,10 @@ public class Animal {
         this.weight = weight; //konstruktor
     }
 
+    public String toString() {
+        return "Imię: "+name+", gatunek: "+species+", waga: "+weight;
+    }
+
     void feed(){
         System.out.println("thx");
         this.weight += 1;
