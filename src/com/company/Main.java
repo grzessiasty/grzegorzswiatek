@@ -13,12 +13,12 @@ public class Main {
         pato.lastName = "Sztando";
 
 
-        Car opel1 = new Car("Astra", "Opel");
+        Car opel1 = new Car("Astra", "Opel",2000);
         opel1.color = "Blue";
         opel1.type = "Sedan";
         opel1.value = 2000.0;
 
-        Car opel2 = new Car("Astra", "Opel");
+        Car opel2 = new Car("Astra", "Opel",2000);
         opel2.color = "Blue";
         opel2.type = "Sedan";
         opel2.value = 2000.0;
@@ -26,7 +26,7 @@ public class Main {
         Animal dog = new Animal("bulldog", 10.0);
         dog.name = "Zwijka";
 
-        Phone cegla = new Phone("Nokia", "3310", 2.4, "Nokiodroid");
+        Phone nokia = new Phone("Nokia", "3310", 2.4, "Nokiodroid", 2002);
 
 
 
@@ -44,8 +44,11 @@ public class Main {
         System.out.println(dog);
         System.out.println(opel1);
         System.out.println(opel2);
-        System.out.println(cegla);
+        System.out.println(nokia);
         System.out.println(pato);
+
+        nokia.turnOn();
+        opel1.turnOn();
 
     }
 }
