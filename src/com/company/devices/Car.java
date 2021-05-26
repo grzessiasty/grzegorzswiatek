@@ -1,6 +1,8 @@
-package devices;
+package com.company.devices;
+import com.company.Human;
+import com.company.Salleable;
 
-public class Car extends Device {
+public class Car extends Device implements Salleable {
 
     public String color;
     public String type;
@@ -26,4 +28,20 @@ public class Car extends Device {
     public void turnOn(){
         System.out.println("Trwa uruchamianie: "+producer+" "+model);
     }
+    @Override
+    public void sell(Human seller, Human buyer, Double price) {
+        if (seller.getCar() != this) {
+            System.out.println("Nie masz samochodu");
+        } else if (buyer.cash < price) {
+            System.out.println("Kupujący ma za mało pieniędzy");
+        } else {
+            buyer.setCar(seller.getCar());
+            buyer.cash -= price;
+            seller.cash += price;
+            seller.delCar();
+
+            System.out.println("Samochód został sprzedany!");
+        }
+    }
+
 }

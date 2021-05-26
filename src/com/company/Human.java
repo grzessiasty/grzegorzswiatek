@@ -1,17 +1,18 @@
 package com.company;
-import devices.Car;
-import devices.Phone;
+import com.company.devices.Car;
+import com.company.devices.Phone;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Human {
+public class Human implements Salleable {
     String firstName;
     String lastName;
     Animal pet;
-    Phone mobilePhone;
+    public Phone mobilePhone;
     private Car car;
     private Double salary;
+    public Double cash;
 
     public String toString() {
         return "Imie: "+firstName+", nazwisko: "+lastName;
@@ -57,5 +58,12 @@ public class Human {
         }
         System.out.println("Jesteś za biedny na auto, Z buta też fajnie sie chodzi.");
 
+    }
+    public void delCar(){
+        this.car = null;
+    }
+    @Override
+    public void sell(Human seller, Human buyer, Double price){
+        System.out.println("Nie możesz sprzedawać ludzi");
     }
 }
