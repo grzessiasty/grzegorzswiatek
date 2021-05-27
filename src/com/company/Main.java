@@ -1,7 +1,10 @@
 package com.company;
 
+import com.company.creatures.Animal;
 import com.company.devices.Car;
 import com.company.devices.Phone;
+import com.company.creatures.FarmAnimal;
+import com.company.creatures.Pet;
 
 public class Main {
 
@@ -17,8 +20,9 @@ public class Main {
         opel2.type = "Sedan";
         opel2.value = 2000.0;
 
-        Animal dog = new Animal("bulldog", 10.0);
-        dog.name = "Zwijka";
+        Animal dog = new Pet("bulldog", 10.0, "Zwijka");
+        FarmAnimal chicken = new FarmAnimal("kura",3.0,"Koko");
+
 
         Phone nokia = new Phone("Nokia", "3310", 2.4, "Nokiodroid", 2002);
 
@@ -63,6 +67,13 @@ public class Main {
         System.out.println("Telefon kupującego: "+ecik.mobilePhone);
 
         ecik.sell(pato,ecik,300.0);
+
+        dog.takeForAWalk();
+        dog.feed();
+        dog.feed(2.0);
+        chicken.feed();
+        chicken.feed(3.5);
+        chicken.beEaten();
 
     }
 }

@@ -1,4 +1,5 @@
 package com.company;
+import com.company.creatures.Animal;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
@@ -8,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Human implements Salleable {
     String firstName;
     String lastName;
-    Animal pet;
+    public Animal pet;
     public Phone mobilePhone;
     private Car car;
     private Double salary;
