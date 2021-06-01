@@ -1,24 +1,28 @@
 package com.company;
 
 import com.company.creatures.Animal;
-import com.company.devices.Car;
-import com.company.devices.Phone;
+import com.company.devices.*;
 import com.company.creatures.FarmAnimal;
 import com.company.creatures.Pet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Car opel1 = new Car("Astra", "Opel",2000);
+        Car opel1 = new Lpg("Opel", "Astra",2000);
         opel1.color = "Blue";
         opel1.type = "Sedan";
         opel1.value = 2000.0;
 
-        Car opel2 = new Car("Astra", "Opel",2000);
+        Car opel2 = new Lpg("Opel", "Astra",2000);
         opel2.color = "Blue";
         opel2.type = "Sedan";
         opel2.value = 2000.0;
+
+        Car maluch = new Electric("Fiat", "126p", 2021);
+        Car sharan = new Diesel("VW", "Sharan", 2005);
 
         Animal dog = new Pet("bulldog", 10.0, "Zwijka");
         FarmAnimal chicken = new FarmAnimal("kura",3.0,"Koko");
@@ -75,5 +79,17 @@ public class Main {
         chicken.feed(3.5);
         chicken.beEaten();
 
+        List<String> apps = new ArrayList<>();
+        apps.add("Facebook");
+        apps.add("Instagram");
+
+        nokia.installAnApp("Snapchat");
+        nokia.installAnApp("Twitter", "4.2.0");
+        nokia.installAnApp("McDonald's", "19.45", "192.168.0.1");
+        nokia.installAnApp(apps);
+
+        opel1.refuel();
+        maluch.refuel();
+        sharan.refuel();
     }
 }
