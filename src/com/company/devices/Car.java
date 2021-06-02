@@ -8,8 +8,8 @@ public abstract class Car extends Device implements Salleable {
     public String type;
     public Double value;
 
-    public Car (String model, String producer, int yearOfProduction){
-        super(producer, model, yearOfProduction);
+    public Car (String producer, String model, int yearOfProduction, Double value){
+        super(model, producer, yearOfProduction, value);
 
     }
     public String toString(){
@@ -29,20 +29,26 @@ public abstract class Car extends Device implements Salleable {
         System.out.println("Trwa uruchamianie: "+producer+" "+model);
     }
     @Override
-    public void sell(Human seller, Human buyer, Double price) {
-        if (seller.getCar() != this) {
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if (!seller.hasCar(this)) {
             System.out.println("Nie masz samochodu");
-        } else if (buyer.cash < price) {
-            System.out.println("Kupujący ma za mało pieniędzy");
-        } else {
-            buyer.setCar(seller.getCar());
-            buyer.cash -= price;
-            seller.cash += price;
-            seller.delCar();
-
-            System.out.println("Samochód został sprzedany!");
         }
+        if(!buyer.hasFreeSpace()){
+            throw new Exception("Kupujący nie ma miejsca w garażu");
+        }
+
+        if (buyer.cash < price){
+            throw new Exception("Kupujący ma za mało pieniędzy");
+        }
+        seller.removeCar(this);
+        buyer.addCar(this);
+
+        seller.cash += price;
+        buyer.cash -= price;
+
+        System.out.println("Samochód został sprzedany");
     }
 
     public abstract void refuel();
 }
+

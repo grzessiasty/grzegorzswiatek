@@ -15,8 +15,8 @@ public class Phone extends Device implements Salleable {
     static final String DEFAULT_VERSION = "latest";
 
 
-    public Phone(String producer, String model, Double screenSize, String operatingSystem, int yearOfProduction) {
-        super(producer, model, yearOfProduction);
+    public Phone(String producer, String model, Double screenSize, String operatingSystem, int yearOfProduction, Double value) {
+        super(producer, model, yearOfProduction, value);
         this.screenSize = screenSize;
         this.operatingSystem = operatingSystem;
     }

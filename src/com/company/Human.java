@@ -2,18 +2,29 @@ package com.company;
 import com.company.creatures.Animal;
 import com.company.devices.Car;
 import com.company.devices.Phone;
+import com.company.devices.Device;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Human implements Salleable {
-    String firstName;
-    String lastName;
+    public final String firstName;
+    public final String lastName;
     public Animal pet;
     public Phone mobilePhone;
-    private Car car;
     private Double salary;
-    public Double cash;
+    public  Double cash;
+    public Car[] garage;
+
+    public Human(String firstName, String lastName, int garageSize){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.garage = new Car[garageSize];
+    }
 
     public String toString() {
         return "Imie: "+firstName+", nazwisko: "+lastName;
@@ -43,26 +54,52 @@ public class Human implements Salleable {
         this.salary = salary;
     }
 
-    public Car getCar(){
-        return this.car;
+        public void setCar(Car car, int id) {
+        this.garage[id] = car;
     }
-    public void setCar(Car car) {
-        if (this.salary > car.value){
-            System.out.println("Twoje zarobki są wyższe niż wartość auta. Udało się kupić za gotówkę!");
-            this.car = car;
-            return;
-        }
-        if(this.salary > (car.value/12)) {
-            System.out.println("Kupiłeś auto ale teraz płać kredyt :(");
-            this.car = car;
-            return;
-        }
-        System.out.println("Jesteś za biedny na auto, Z buta też fajnie sie chodzi.");
 
+    public Double getValue() {
+        Double value = 0.0;
+
+        for (Device vehicle : this.garage) {
+            value += vehicle.value;
+        }
+
+        return value;
     }
-    public void delCar(){
-        this.car = null;
+    public List<Car> sort() {
+        return Arrays.stream(garage)
+                .sorted(Comparator.comparing(car -> car.yearOfProduction))
+                .collect(Collectors.toList());
     }
+    public boolean hasCar(Car newCar){
+        for (Car car: garage) {
+            if(car == newCar) return true;
+        }
+        return false;
+    }
+    public boolean hasFreeSpace(){
+        for (Car car: garage) {
+            if(car == null) return true;
+        }
+        return false;
+    }
+    public void addCar(Car newCar){
+        for (int i = 0; i < garage.length; i++){
+            if (this.garage[i] == null){
+                this.garage[i] = newCar;
+            }
+        }
+    }
+    public void removeCar(Car carRemove) {
+        for (int i = 0; i < garage.length; i++) {
+            if (this.garage[i] == carRemove) {
+                this.garage[i] = null;
+            }
+        }
+    }
+
+
     @Override
     public void sell(Human seller, Human buyer, Double price){
         System.out.println("Nie możesz sprzedawać ludzi");
